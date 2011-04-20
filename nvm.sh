@@ -108,8 +108,8 @@ nvm()
       if (
         mkdir -p "$NVM_DIR/src" && \
         cd "$NVM_DIR/src" && \
-        curl -C - -# "http://nodejs.org/dist/node-$VERSION.tar.gz" -o "node-$VERSION.tar.gz" && \
-        tar -xzf "node-$VERSION.tar.gz" && \
+        ([ -e "node-$VERSION.tar.gz" ] || curl -C - -# "http://nodejs.org/dist/node-$VERSION.tar.gz" -o "node-$VERSION.tar.gz") && \
+        ([ -e "node-$VERSION" ] || tar -xzf "node-$VERSION.tar.gz") && \
         cd "node-$VERSION" && \
         ./configure --prefix="$NVM_DIR/$VERSION" && \
         make && \
